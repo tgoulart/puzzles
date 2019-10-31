@@ -172,7 +172,7 @@ static int saveGameRead(void *ctx, void *buf, int len)
     
     [aiv startAnimating];
     // Give game generation 250 ms to come up with something before we display the Generating Puzzle indicator
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25e9), dispatch_get_current_queue(), ^{ box.hidden = NO; });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25e9), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{ box.hidden = NO; });
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         midend_new_game(m);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -207,7 +207,7 @@ static void saveGameWrite(void *ctx, void *buf, int len)
         return;
     }
     CGFloat toolbar_height = 44;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && UIInterfaceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         toolbar_height = 32;
     }
     int top_margin = IOS7() ? (20+44) : 0;

@@ -78,7 +78,7 @@ NSInteger hacky_fetch_preset(struct preset_menu* presets, NSInteger row, struct 
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (BOOL)shouldAutorotate
 {
     return YES;
 }

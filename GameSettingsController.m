@@ -75,7 +75,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (BOOL)shouldAutorotate
 {
     return YES;
 }
@@ -260,7 +260,7 @@
             NSArray *choices = choiceText[indexPath.row];
             int value = config_items[indexPath.row].u.choices.selected;
             NSString *title = [NSString stringWithUTF8String:config_items[indexPath.row].name];
-            GameSettingsChoiceController *gscc = [[GameSettingsChoiceController alloc] initWithGame:thegame index:indexPath.row choices:choices value:value title:title delegate:self];
+            GameSettingsChoiceController *gscc = [[GameSettingsChoiceController alloc] initWithGame:thegame index:(int)indexPath.row choices:choices value:value title:title delegate:self];
             [self.navigationController pushViewController:gscc animated:YES];
         }
     }

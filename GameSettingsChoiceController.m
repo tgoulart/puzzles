@@ -56,7 +56,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+- (BOOL)shouldAutorotate
 {
     return YES;
 }
@@ -145,7 +145,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    [delegate didSelectChoice:index value:indexPath.row];
+    [delegate didSelectChoice:index value:(int)indexPath.row];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
