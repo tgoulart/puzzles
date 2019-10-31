@@ -178,7 +178,7 @@ static int saveGameRead(void *ctx, void *buf, int len)
         dispatch_async(dispatch_get_main_queue(), ^{
             [aiv stopAnimating];
             [overlay removeFromSuperview];
-            me = m;
+            self->me = m;
             [self layoutSubviews];
         });
     });
