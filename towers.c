@@ -1490,6 +1490,11 @@ static game_state *execute_move(const game_state *from, const char *move)
             ret->grid[y*w+x] = n;
             ret->pencil[y*w+x] = 0;
 
+            for (int k = 0; k < w; ++k) {
+                ret->pencil[y*w+k] &= ~(1L << n);
+                ret->pencil[k*w+x] &= ~(1L << n);
+            }
+
             if (!ret->completed && !check_errors(ret, NULL))
                 ret->completed = true;
         }
@@ -1505,6 +1510,18 @@ static game_state *execute_move(const game_state *from, const char *move)
 	    if (!ret->grid[i])
 		ret->pencil[i] = (1L << (w+1)) - (1L << 1);
 	}
+        // But don't add pencil marks for impossible values.
+        for (int xx = 0; xx < w; ++xx) {
+            for (int yy = 0; yy < w; ++yy) {
+                int nn = ret->grid[yy * w + xx];
+                if (nn) {
+                    for (int k = 0; k < w; ++k) {
+                        ret->pencil[yy * w + k] &= ~(1L << nn);
+                        ret->pencil[k * w + xx] &= ~(1L << nn);
+                    }
+                }
+            }
+        }
 	return ret;
     } else if (move[0] == 'D' && sscanf(move+1, "%d,%d", &x, &y) == 2 &&
                is_clue(from, x, y)) {
