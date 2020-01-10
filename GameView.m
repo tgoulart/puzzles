@@ -385,7 +385,7 @@ static void saveGameWrite(void *ctx, void *buf, int len)
     CGPoint p = [touch locationInView:self];
     p.x -= game_rect.origin.x;
     p.y -= game_rect.origin.y;
-    touchTimer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(handleTouchTimer:) userInfo:nil repeats:NO];
+    touchTimer = [NSTimer timerWithTimeInterval:0.2 target:self selector:@selector(handleTouchTimer:) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:touchTimer forMode:NSDefaultRunLoopMode];
     touchState = 1;
     touchXpoints = p.x;
