@@ -18,6 +18,9 @@
     // Override point for customization after application launch.
     GameListViewController *glvc = [[GameListViewController alloc] init];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:glvc];
+    if ([nc respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        nc.interactivePopGestureRecognizer.enabled = NO;
+    }
     GameViewController *gvc = [glvc savedGameViewController];
     if (gvc != nil) {
         [nc setViewControllers:@[glvc, gvc] animated:NO];
