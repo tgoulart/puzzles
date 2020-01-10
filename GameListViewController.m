@@ -36,6 +36,7 @@ static NSString *CellIdentifier = @"Cell";
             label.tag = 1;
             label.font = [UIFont boldSystemFontOfSize:16];
             label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor blackColor];
             [self.contentView addSubview:label];
         
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake((self.contentView.frame.size.width-96)/2, 31, 96, 96)];
@@ -46,6 +47,7 @@ static NSString *CellIdentifier = @"Cell";
             detail.tag = 3;
             detail.font = [UIFont systemFontOfSize:14];
             detail.numberOfLines = 0;
+            detail.textColor = [UIColor blackColor];
             [self.contentView addSubview:detail];
             
             UIImageView *inprogress = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width-50, 50, 40, 40)];
@@ -58,6 +60,7 @@ static NSString *CellIdentifier = @"Cell";
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, self.contentView.frame.size.width-100, 26)];
             label.tag = 1;
             label.font = [UIFont boldSystemFontOfSize:20];
+            label.textColor = [UIColor blackColor];
             [self.contentView addSubview:label];
         
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 96, 96)];
@@ -68,6 +71,7 @@ static NSString *CellIdentifier = @"Cell";
             detail.tag = 3;
             detail.font = [UIFont systemFontOfSize:14];
             detail.numberOfLines = 0;
+            detail.textColor = [UIColor blackColor];
             [self.contentView addSubview:detail];
             
             UIImageView *inprogress = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width-40, 5, 40, 40)];
