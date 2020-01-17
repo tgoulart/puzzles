@@ -1522,6 +1522,27 @@ static game_state *execute_move(const game_state *from, const char *move)
                 }
             }
         }
+        // Remove impossible marks from clues
+        int dx[4] = {0, 0, 1, -1};
+        int dy[4] = {1, -1, 0, 0};
+        for (int c = 0; c < 4 * w; ++c) {
+            int clue = ret->clues->clues[c];
+            if (clue == 0) {
+                continue;
+            }
+            int index = c / w;
+            int row = index == 0 ? 0 : index == 1 ? w-1 : c % w;
+            int col = index == 2 ? 0 : index == 3 ? w-1 : c % w;
+            for (int k = 0; k < clue-1; ++k) {
+                for (int v = w - clue + k + 2; v <= w; ++v) {
+                    ret->pencil[(row + dy[index] * k) * w + (col + dx[index] * k)] &= ~(1L << v);
+                }
+            }
+            // Specil case that doesn't fit the generic pattern
+            if (clue == 2) {
+                ret->pencil[(row + dy[index] * 1) * w + (col + dx[index] * 1)] &= ~(1L << 5);
+            }
+        }
 	return ret;
     } else if (move[0] == 'D' && sscanf(move+1, "%d,%d", &x, &y) == 2 &&
                is_clue(from, x, y)) {
